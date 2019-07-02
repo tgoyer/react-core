@@ -1,0 +1,7 @@
+.vs
+*.user
+packages
+bin
+obj
+node_modules
+*/Logs/*.txt
