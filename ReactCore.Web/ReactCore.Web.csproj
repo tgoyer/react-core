@@ -52,12 +52,8 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="Client\public\assets\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="Client\public\assets\**" />
-    <EmbeddedResource Remove="Client\public\assets\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="Client\public\assets\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -70,8 +66,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Logs\" />
     <None Include="Client\package.json" />
     <None Include="Client\public\manifest.json" />
+    <Folder Include="Client\public\assets\" />
   </ItemGroup>
 
   <ItemGroup>

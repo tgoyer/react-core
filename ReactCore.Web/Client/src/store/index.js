@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
 
-import dataStore from './data';
-import userStore from './user';
+import appState from './appState';
+import data from './data';
+import projects from './projects';
+import tasks from './tasks';
+import users from './users';
 
 export const rootReducer = combineReducers({
-    data: dataStore,
-    user: userStore
+    appState,
+    data,
+    projects,
+    tasks,
+    users
 });

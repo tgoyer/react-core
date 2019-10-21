@@ -33,7 +33,7 @@ const styles = theme => ({
     },
 });
 
-const Main = (props) => {
+const Footer = (props) => {
     const { classes } = props;
     
     return (
@@ -43,4 +43,4 @@ const Main = (props) => {
     );
 }
 
-export default injectSheet(styles)(Main);
+export default injectSheet(styles)(Footer);

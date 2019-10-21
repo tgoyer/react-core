@@ -1,23 +1,27 @@
 const colors = {
+    accent: {
+        color: '#00429e',
+        text: '#ffffff',
+    },
     primary: {
-        background: '#f0f0f0',
+        color: '#f0f0f0',
         text: '#000000',
     },
     secondary: {
-        background: '#40a9f3',
-        text: '#ffffff'
+        color: '#663c00',
+        text: '#ffffff',
     },
     tertiary: {
-        background: '#333333',
-        text: '#ffffff'
+        color: '#333333',
+        text: '#ffffff',
     },
     disabled: {
-        background: '#cccccc',
-        text: '#999999'
+        color: '#cccccc',
+        text: '#999999',
     },
     alert: {
-        background: '#ffeeee',
-        text: '#660000'
+        color: '#ffeeee',
+        text: '#660000',
     }
 }
 

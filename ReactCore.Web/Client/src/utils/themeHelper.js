@@ -1,4 +1,4 @@
-const colorHelpers = {
+export const color = {
     brightness: (colorHex, amount) => {
         const usePound = (colorHex[0] === "#");
   
@@ -25,5 +25,5 @@ const colorHelpers = {
 }
 
 export default {
-    color: colorHelpers
+    color
 }

@@ -60,6 +60,8 @@ namespace ReactCore.Web
 
             // Register ReactCore.Data injectable services
             services.AddTransient<DataGridService>();
+            services.AddTransient<ProjectService>();
+            services.AddTransient<TaskService>();
             services.AddTransient<UserService>();
 
             // Register Swagger configuration

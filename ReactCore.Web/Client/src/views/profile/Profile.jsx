@@ -3,7 +3,7 @@ import injectSheet from "react-jss";
 import { useSelector, useDispatch } from 'react-redux';
 
 import UserDetail from './UserDetail';
-import { getUserInfo } from '../../store/user';
+import { setAppTitle } from '../../store/appState';
 
 const styles = theme => ({
     title: {
@@ -14,16 +14,15 @@ const styles = theme => ({
 
 const Profile = ({ classes }) => {
     const dispatch = useDispatch();
-    const userInfo = useSelector(state => state.user);
+    const userInfo = useSelector(state => state.users.current.data);
 
-    const getUserInfoDispatch = React.useCallback(() => { 
-        dispatch(getUserInfo());
+    const initOnLoad = React.useCallback(() => { 
+        dispatch(setAppTitle('User Profile'))
     }, [dispatch]);
 
     React.useEffect(() => {
-        getUserInfoDispatch();
-    }, [getUserInfoDispatch]);
-
+        initOnLoad();
+    }, [initOnLoad]);
 
     return (
         <React.Fragment>

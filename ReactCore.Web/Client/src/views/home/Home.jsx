@@ -1,5 +1,7 @@
 import React from 'react';
 import injectSheet from "react-jss";
+import { useDispatch } from 'react-redux';
+import { setAppTitle } from '../../store/appState';
 
 const styles = theme => ({
     title: {
@@ -23,11 +25,20 @@ const styles = theme => ({
 const Home = (props) => {
     const {classes} = props;
 
+    const dispatch = useDispatch();
+    const initOnLoad = React.useCallback(() => { 
+        dispatch(setAppTitle('Home'))
+    }, [dispatch]);
+
+    React.useEffect(() => {
+        initOnLoad();
+    }, [initOnLoad]);
+
     return (
         <React.Fragment>
             <div className={classes.title}>Home</div>
             <div className={classes.body}>
-                <p className={classes.subtitle}>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
+                <p className={classes.subtitle}>This project was bootstrapped with <a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
                 <p><strong>Available Scripts</strong></p>
                 <dl>
                     <dt><code>npm run start</code></dt>
@@ -38,17 +49,17 @@ const Home = (props) => {
                     <dt><code>npm run test</code></dt>
                     <dd>
                         Launches the test runner in the interactive watch mode.<br/><br/>
-                        See the section about <a href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a> for more information.<br/><br/>
+                        See the section about <a target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a> for more information.<br/><br/>
                     </dd>
                     <dt><code>npm run build</code></dt>
                     <dd>
                         Builds the app for production to the "build" folder.<br/><br/>
-                        It correctly bundles React in production mode and optimizes the build for the best performance.  The build is minified and the filenames include the hashes.  Your app is ready to be deployed!  See the section about <a href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a> for more information.<br/><br/>
+                        It correctly bundles React in production mode and optimizes the build for the best performance.  The build is minified and the filenames include the hashes.  Your app is ready to be deployed!  See the section about <a rel="noopener noreferrer" href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a> for more information.<br/><br/>
                     </dd>
                 </dl>
                 <p><strong>Learn More</strong></p>
-                <p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-                <p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p>
+                <p>You can learn more in the <a target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
+                <p>To learn React, check out the <a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/">React documentation</a>.</p>
             </div>
         </React.Fragment>
 

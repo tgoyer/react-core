@@ -53,8 +53,8 @@ namespace ReactCore.Web.Utilities
             {
                 lock (cacheLock)
                 {
-                    user = userService.GetUser(domainName);
-                    var roles = userService.GetUserPermissions(domainName);
+                    user = userService.SelectUser(domainName);
+                    var roles = userService.SelectUserPermissions(domainName);
 
                     if (user != null)
                     {

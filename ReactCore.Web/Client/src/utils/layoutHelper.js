@@ -3,7 +3,10 @@ import { contains } from './stringHelper';
 const sslPort = 8001;
 const servers = {
     'localhost': 'LOCAL',
-    '.com': 'PRODUCTION'
+    'vdev3': 'DEVELOPMENT',
+    'qa6': 'TEST',
+    'uat2': 'TEST',
+    'esight.acml.com': 'PRODUCTION'
 }
 
 /**
