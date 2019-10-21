@@ -6,6 +6,7 @@ import { setAppTitle } from '../../store/appState';
 const styles = theme => ({
     title: {
         ...theme.fonts.title,
+        marginBottom: 8,
     },
     subtitle: {
         ...theme.fonts.subtitle,
