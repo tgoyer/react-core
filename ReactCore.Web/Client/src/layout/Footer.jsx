@@ -17,17 +17,17 @@ const styles = theme => ({
         '& a': {
             ...theme.fonts.subtitle,
             ...theme.fonts.link,
-            color: theme.colors.tertiary.text,
+            color: theme.colors.complement.text,
             marginLeft: 5,
             '&:hover': {
-                color: theme.colors.tertiary.text,
+                color: theme.colors.complement.text,
                 textDecoration: 'underline',
             },
             '&:active': {
-                color: theme.colors.tertiary.text,
+                color: theme.colors.complement.text,
             },
             '&:visted': {
-                color: theme.colors.tertiary.text,
+                color: theme.colors.complement.text,
             },
         }
     },

@@ -4,7 +4,6 @@ import injectSheet from "react-jss";
 
 import { Button } from '../Forms';
 
-
 import usePortal from '../../hooks/usePortal';
 
 const styles = theme => ({

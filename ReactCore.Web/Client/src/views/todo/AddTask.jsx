@@ -17,6 +17,7 @@ const AddTask = ({ classes, projects, task, users, onChange }) => {
     const userOptions = users != null
         ? users.map(user => ({ key: user.Id, text: user.FullName, value: user.Id }))
         : [];
+        
     const projectOptions = projects != null
         ? projects.map(project => ({ key: project.Id, text: project.Name, value: project.Id }))
         : [];

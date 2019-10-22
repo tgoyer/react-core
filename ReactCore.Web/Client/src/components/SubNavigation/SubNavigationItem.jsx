@@ -10,7 +10,7 @@ const styles = theme => ({
     },
     counter: {
         fontSize: 12,
-        backgroundColor: '#e67300',
+        backgroundColor: theme.colors.accent.color,
         width: 18,
         height: 18,
         textAlign: 'center',

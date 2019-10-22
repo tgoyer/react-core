@@ -8,6 +8,7 @@ export const tabs = {
     PAST_DUE: 4,
     PROJECTS: 5,
     COMPLETE: 6,
+    USERS: 7,
 }
 
 export const overdue =          t => isBefore(parseISO(t.DueDate), startOfToday());
@@ -19,6 +20,7 @@ export const pastDue =     () => t => t.IsComplete === false && overdue(t);
 export const project =     projectId => t => t.IsComplete === false && t.ProjectId === projectId;
 export const today =       () => t => t.IsComplete === false && (overdue(t) || isToday(parseISO(t.DueDate)));
 export const week =        () => t => t.IsComplete === false && (overdue(t) || isWithinInterval(parseISO(t.DueDate), { start: startOfToday(), end: addDays(startOfToday(), 7) }));
+export const users =       userId => t => t.IsComplete === false && t.UserId === userId;
 
 export default {
     [tabs.COMPLETE]: complete,
@@ -28,6 +30,7 @@ export default {
     [tabs.PROJECTS]: project,
     [tabs.TODAY]: today,
     [tabs.WEEK]: week,
+    [tabs.USERS]: users,
     userFilter,
     overdue
 };

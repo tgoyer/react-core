@@ -3,25 +3,35 @@ import cn from 'classnames';
 import injectSheet from "react-jss";
 import { format, isBefore, parseISO, startOfToday } from 'date-fns';
 
+import themeHelper from '../../utils/themeHelper';
+
 import OverdueBadge from './OverdueBadge';
 
 const styles = theme => ({
-    alert: {
-        color: theme.colors.alert.text,
-        fontWeight: theme.fonts.weights.bold,
+    active: {
+        maxHeight: '500px !important',
+        padding: '16px 16px 16px 24px !important',
+        transition: 'max-height 150ms ease, padding 150ms ease',
     },
-    collapsed: {
-        borderRadius: 8,
+    collapsedSubTitle: {
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        transition: 'border-radius 150ms ease',
     },
     container: {
-        backgroundColor: '#ffffff',
-        borderRadius: 8,
-        boxShadow: '1px 1px 3px rgba(0, 0, 0, .25)',
+        backgroundColor: themeHelper.color.brightness(theme.colors.secondary.color, 150),
+        border: `1px solid ${theme.colors.secondary.color}`,
+        borderRadius: 12,
         marginBottom: 8,
         width: '100%',
     },
     content: {
-        padding: '16px 16px 16px 24px',
+        backgroundColor: themeHelper.color.brightness(theme.colors.secondary.color, 150),
+        borderRadius: '0 0 12px 12px',
+        padding: '0 16px 0 24px',
+        maxHeight: 0,
+        overflow: 'hidden',
+        transition: 'max-height 200ms ease, padding 200ms ease',
         '& strong': {
             fontSize: 14,
             fontWeight: theme.fonts.weights.bold,
@@ -31,13 +41,15 @@ const styles = theme => ({
         }            
     },
     subtitle: {
+        color: theme.colors.secondary.text,
         display: 'flex',
-        backgroundColor: '#e7f4fd',
-        borderColor: '#9fd3f9',
+        backgroundColor: themeHelper.color.brightness(theme.colors.secondary.color, 50),
+        borderColor: theme.colors.secondary.color,
         borderWidth: '1px 0 1px 0',
         borderStyle: 'solid',
         justifyContent: 'space-between',
         padding: '4px 16px',
+        transition: 'border-radius 150ms ease',
         '& strong': {
             marginRight: 16
         },
@@ -45,10 +57,10 @@ const styles = theme => ({
     title: {
         display: 'flex',
         justifyContent: 'space-between',
-        backgroundColor: '#cfe9fc',
+        backgroundColor: theme.colors.secondary.color,
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
-        color: '#40a9f3',
+        color: theme.colors.secondary.text,
         cursor: 'pointer',
         fontSize: 18,
         fontWeight: theme.fonts.weights.bold,
@@ -57,39 +69,38 @@ const styles = theme => ({
 });
 
 const Task = ({ active, classes, project, task, user, onClick }) => {
+    const dueDate = parseISO(task.DueDate);
+    const dueDatePassed = isBefore(dueDate, startOfToday()) && task.IsComplete === false;
+
     const handleClick = (evt) => {
         if (onClick != null) {
             onClick(task);
         }
     }
 
-    const getStatus = () => task.IsComplete === true ? 'Complete' : 'Incomplete';
-
-    const dueDate = parseISO(task.DueDate);
-    const dueDatePassed = isBefore(dueDate, startOfToday()) && task.IsComplete === false;
+    const getStatus = () => {
+        return task.IsComplete === true ? 'Complete' 
+            : dueDatePassed ? 'Overdue' 
+            : 'Incomplete';
+    }
 
     return (
         <div className={classes.container}>
-            <div className={cn(classes.title, { [classes.collapsed]: !active })} onClick={handleClick}>
+            <div className={classes.title} onClick={handleClick}>
                 <span>{ task.Name }</span>
                 <OverdueBadge show={dueDatePassed} task={task} />
             </div>
-            { active && (
-                <React.Fragment>
-                    <div className={classes.subtitle}>
-                        <span><strong>Due:</strong><span className={ cn({ [classes.alert]: dueDatePassed }) }>{ format(dueDate, "LLL dd, yyyy") }</span></span>
-                        <span><strong>Status:</strong>{ getStatus(task) }</span>
-                    </div>
-                    <div className={classes.content}>
-                        <strong>Comments:</strong>
-                        <p>{ task.Comments }</p>
-                        <strong>Project:</strong>
-                        <p>{ project != null ? project.Name : '- Unassigned -' }</p>
-                        <strong>Assigned User:</strong>
-                        <p>{ user != null ? user.FullName : '- Unassigned -' }</p>
-                    </div>
-                </React.Fragment>
-            )}
+            <div className={cn({ [classes.collapsedSubTitle]: !active }, classes.subtitle)}>
+                <span><strong>Due:</strong>{ format(dueDate, "LLL dd, yyyy") }</span>
+                <span><strong>Assigned User:</strong>{ user != null ? user.FullName : '- Unassigned -' }</span>
+                <span><strong>Status:</strong>{ getStatus(task) }</span>
+            </div>
+            <div className={cn(classes.content, { [classes.active]: active })}>
+                <strong>Comments:</strong>
+                <p>{ task.Comments }</p>
+                <strong>Project:</strong>
+                <p>{ project != null ? project.Name : '- Unassigned -' }</p>
+            </div>
         </div>
     );
 }

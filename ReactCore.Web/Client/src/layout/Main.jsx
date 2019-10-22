@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 const styles = theme => ({
     grid: {
         display: 'grid',
-        gridTemplateRows: '75px 1fr 75px',
+        gridTemplateRows: '75px auto 75px',
         gridTemplateColumns: '150px 1fr',
         minHeight: '100vh',
         margin: 0
@@ -28,8 +28,8 @@ const styles = theme => ({
         ...theme.fonts.text,
         gridColumnStart: 2,
         
-        backgroundColor: theme.colors.primary.color,
-        color: theme.colors.primary.text,
+        backgroundColor: theme.colors.content.color,
+        color: theme.colors.content.text,
         padding: 18,
         maxWidth: 'calc(100vw - 150px)',
     },

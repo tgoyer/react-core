@@ -5,7 +5,7 @@ import Tooltip from 'react-tooltip';
 
 const styles = theme => ({
     alert: {
-        color: theme.colors.alert.text,
+        color: theme.colors.alert.color,
         fontWeight: theme.fonts.weights.bold,
         textShadow: '0 0 4px #ffffff',
     }
