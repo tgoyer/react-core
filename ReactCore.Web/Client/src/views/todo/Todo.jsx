@@ -17,8 +17,6 @@ import { getTasks } from '../../store/tasks';
 import { getUsers } from '../../store/users';
 import { setAppTitle } from '../../store/appState';
 
-import broadcast from '../../utils/broadcast';
-
 import taskFilters, { tabs } from './taskFilters';
 
 const styles = theme => ({
