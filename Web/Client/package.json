@@ -1,0 +1,60 @@
+{
+    "name": "client",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "build": "cross-env NODE_ENV=production npm-run-all clean build:tailwind build:cra",
+        "build:cra": "react-scripts build",
+        "build:tailwind": "tailwind build src/index.css -o public/css/index.css",
+        "clean": "rimraf ./build",
+        "clean:nm": "rimraf ./node_modules",
+        "start": "npm-run-all --parallel start:tailwind start:cra",
+        "start:cra": "react-scripts start",
+        "start:tailwind": "nodemon -e css --ignore public/ -x \"yarn build:tailwind\"",
+        "test": "react-scripts test",
+        "init": "tailwind init"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^1.5.0",
+        "@testing-library/jest-dom": "^5.11.9",
+        "@testing-library/react": "^11.2.5",
+        "@testing-library/user-event": "^12.8.1",
+        "axios": "^0.21.1",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.21",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-helmet-async": "^1.0.9",
+        "react-redux": "^7.2.2",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "tailwindcss": "^2.0.4",
+        "web-vitals": "^1.1.0"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.2.5",
+        "cross-env": "^7.0.3",
+        "nodemon": "^2.0.7",
+        "npm-run-all": "^4.1.5",
+        "postcss": "^8.2.8",
+        "rimraf": "^3.0.2"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
