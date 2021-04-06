@@ -12,17 +12,16 @@ namespace App.Web.Utilities
     public interface IAccountTools
     {
         string GetDomainUserName();
-
         Task<User> GetUser();
-
         Task<User> GetUser(string domainName);
-
         Task<User> ResetUser(string userKey);
     }
 
     public class AccountTools : IAccountTools
     {
         private string accountCachePrefix = "AccountCache";
+        private string domainPrefix = "AC\\";
+
         private AppSettings appSettings;
         private IHttpContextAccessor httpContextAccessor;
         private IMemoryCache memoryCache;
@@ -59,9 +58,9 @@ namespace App.Web.Utilities
                 return null;
             }
 
-            if (!userName.StartsWith("AC\\"))
+            if (!userName.StartsWith(domainPrefix))
             {
-                userName = $"AC\\{userName}";
+                userName = $"{domainPrefix}{userName}";
             }
 
             string cacheKey = $"{accountCachePrefix}::{userName}";

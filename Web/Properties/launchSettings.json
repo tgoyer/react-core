@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ResearchWire": {
+    "react-core": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

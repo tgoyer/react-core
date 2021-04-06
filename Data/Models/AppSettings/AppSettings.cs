@@ -7,6 +7,8 @@
         public string Name { get; set; }
         public string ProxyUrl { get; set; }
         public string SupportEmail { get; set; }
+        public string SpaUrl { get; set; }
+
         public Cache Cache { get; set; }
         public Database Database { get; set; }
     }
@@ -19,11 +21,7 @@
 
     public class Database
     {
-        public string DataSource { get; set; }
-        public string InitialCatalog { get; set; }
-        public bool IntegratedSecurity { get; set; }
-        public bool MultipleActiveResultSets { get; set; }
-        public string Password { get; set; }
-        public string UserID { get; set; }
+        public string ConnectionString { get; set; }
+        public int Timeout { get; set; }
     }
 }

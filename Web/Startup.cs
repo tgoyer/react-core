@@ -33,12 +33,7 @@ namespace App.Web
             appSettingsSection.Bind(appSettings);
 
             services.AddLogging();
-
-            services.AddControllers(options =>
-            {
-                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
-            });
-
+            services.AddControllers();
             services.AddCors(config =>
             {
                 config.AddDefaultPolicy(options =>
@@ -60,8 +55,6 @@ namespace App.Web
 
             services.Configure<IISOptions>(options => options.AutomaticAuthentication = true);
             services.AddAuthentication(IISDefaults.AuthenticationScheme);
-            //services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-            //    .AddNegotiate();
 
             // Inject data services.
             services.AddSingleton<IUserService, UserService>();
@@ -143,7 +136,7 @@ namespace App.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller:slugify}/{action:slugify?}/{id:slugify?}"
+                    pattern: "{controller}/{action?}/{id?}"
                 );
                 endpoints.MapFallbackToFile("/index.html");
             });
@@ -152,7 +145,7 @@ namespace App.Web
             {
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    spa.UseProxyToSpaDevelopmentServer(appSettings.SpaUrl);
                 }
             });
         }

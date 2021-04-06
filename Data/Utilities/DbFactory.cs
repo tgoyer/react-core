@@ -149,6 +149,6 @@ namespace App.Data.Utilities
             }
         }
 
-        private IDbConnection GetDbConnection() => new SqliteConnection(dbSettings.DataSource);
+        private IDbConnection GetDbConnection() => new SqliteConnection(dbSettings.ConnectionString);
     }
 }
